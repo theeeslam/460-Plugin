@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
 <?php
 /*
  * Plugin Name: The Popup
@@ -77,7 +81,11 @@ function popup_textarea_field_3_render() {
 	<?php
 }
 
+// Variables
 
+$Height = 'popup_text_field_0';
+$Width = 'popup_text_field_0';
+$Content = 'popup_textarea_field_3';
 	
 
 // These functions make the fields where information can be written have details. This is the callback.
@@ -98,24 +106,15 @@ function popup_options_page() {
 		?>
 
 	<button onclick = "openWin()"> Create the Window </button>
-
+	</form>
+<!-- This script opens up the popup window. -->	
 <script>
-var Window;
+var Window
 
 function openWin() {
-	Window = window.open("window.php","Window","width = $Width, height = $Height");
+	Window = window.open("/home/ccit2656/public_html/wp-content/plugins/WilltheRealPopupPleaseStandUp/window.php","Window","width = $Width, height = $Height");
 }
-</script>
-
-
-	</form>
-
-<?php 
-
-
-?>
-	
-	
+</script>	
 	<?php
 	
 }
@@ -136,9 +135,7 @@ function popup_callit(){
 
 add_filter('the_content', 'popup_callit');	
 
-// Variables
 
-$Height = 'popup_text_field_0';
-$Width = 'popup_text_field_0';
-$Content = 'popup_textarea_field_3';
 ?>
+</body>
+</html>
