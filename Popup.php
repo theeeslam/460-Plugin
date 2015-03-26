@@ -104,7 +104,7 @@ function popup_options_page() {
 var Window
 
 function openWin() {
-	Window = window.open("","Window","width = $Width, height = $Height");
+	Window = window.open("public_html/wp-content/plugins/Popup_Plugin/window.php","Window","width = $Width, height = $Height");
 }
 </script>
 	<button onclick = "openWin()"> Create the Window </button>
@@ -117,10 +117,9 @@ function openWin() {
 
 add_action( 'admin_menu', 'popup_add_admin_menu' );
 add_action( 'admin_init', 'popup_settings_init' );	
-add_action( 'wp_loaded', 'launch_popup');
-function launch_popup(){
-	resource fopen("","r")
-}
+// Hook for when wp loads a page. Popup will open.
+add_action( 'wp_loaded', 'openWin');
+
 
 
 function popup_callit(){
