@@ -100,10 +100,6 @@ function popup_options_page() {
 		do_settings_sections( 'plugin_page' );
 		submit_button();
 		?>
-
-	<button onclick = "openWin()"> Create the Window </button>
-	</form>
-<!-- This script opens up the popup window. -->	
 <script>
 var Window
 
@@ -111,6 +107,10 @@ function openWin() {
 	Window = window.open("http://phoenix.sheridanc.on.ca/~ccit2656/wp-admin/public_html/wp-content/plugins/Popup_Plugin/window.php","Window","width = $Width, height = $Height");
 }
 </script>
+	<button onclick = "openWin()"> Create the Window </button>
+	</form>
+<!-- This script opens up the popup window. -->	
+
 <?php
 	
 }
