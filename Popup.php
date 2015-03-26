@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /*
  * Plugin Name: The Popup
  * Description: This is a plugin that displays a popup.
@@ -81,7 +81,7 @@ function popup_textarea_field_3_render() {
 
 $Height = 'popup_text_field_0';
 $Width = 'popup_text_field_0';
-$Content = 'popup_textarea_field_3';
+$SESSION_["content"] = 'popup_textarea_field_3';
 	
 
 // These functions make the fields where information can be written have details. This is the callback.
@@ -104,7 +104,7 @@ function popup_options_page() {
 var Window
 
 function openWin() {
-	Window = window.open("http://phoenix.sheridanc.on.ca/~ccit2656/wp-admin/public_html/wp-content/plugins/Popup_Plugin/window.php","Window","width = $Width, height = $Height");
+	Window = window.open("","Window","width = $Width, height = $Height");
 }
 </script>
 	<button onclick = "openWin()"> Create the Window </button>
@@ -117,7 +117,10 @@ function openWin() {
 
 add_action( 'admin_menu', 'popup_add_admin_menu' );
 add_action( 'admin_init', 'popup_settings_init' );	
-
+add_action( 'wp_loaded', 'launch_popup');
+function launch_popup(){
+	resource fopen("","r")
+}
 
 
 function popup_callit(){
@@ -128,6 +131,7 @@ function popup_callit(){
 	echo '<p>Textarea: ' . $options['popup_textarea_field_3'] . '</p>';
 
 }	
+// This is the short code function. The user can call on [welp] for ease of access
 function shortcode_welp($atts, $content = null) {
 	extract(shortcode_atts(array(
 		'class' => ''

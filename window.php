@@ -1,25 +1,22 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
+
+<head>
+	<title> WOW SO COOL </title>
+	<link href="this.css" rel=stylesheet
 <body>
 
-<p>Open a new window, and resize the width and height to 500px:</p>
+<h1>this is a heading!!!!</h1>
+<?php
 
-<button onclick="openWin()">Create window</button>
-<button onclick="resizeWin()">Resize window</button>
+echo $SESSION_["content"];
 
-<script>
-var myWindow;
-
-function openWin() {
-    myWindow = window.open("", "", "width=100, height=100");
-}
-
-function resizeWin() {
-    myWindow.resizeTo(250, 250);
-    myWindow.focus();
-}
-</script>
+?>
+<img src="http://www.dailybunny.com/.a/6a00d8341bfd0953ef0148c793026c970c-pi" alt="puppies">
 
 </body>
 </html>
-	
