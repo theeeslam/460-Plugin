@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
-</head>
 <body>
 <?php
+ob_start();
 /*
  * Plugin Name: The Popup
- * Description: This is a plugin that displays a popup on page load
+ * Description: This is a plugin that displays a popup.
  * Author: Elyse M, Tom S, Paige R.
  */
 
@@ -31,7 +30,7 @@ function popup_settings_init(  ) {
 // This is the first settings field: Height of the popup in pixels
 	add_settings_field( 
 		'popup_text_field_0', 
-		__( 'Enter Width in pixels:', 'popup' ), 
+		__( 'Enter Height in pixels:', 'popup' ), 
 		'popup_text_field_0_render', 
 		'plugin_page', 
 		'popup_page_section' 
@@ -39,7 +38,7 @@ function popup_settings_init(  ) {
 // This is the second settings field: Width of the popup in pixels	
 	add_settings_field( 
 		'popup_text_field_1', 
-		__( 'Enter Height in pixels:', 'popup' ), 
+		__( 'Enter Width in pixels:', 'popup' ), 
 		'popup_text_field_1_render', 
 		'plugin_page', 
 		'popup_page_section' 
@@ -81,7 +80,7 @@ function popup_textarea_field_3_render() {
 	<?php
 }
 
-// Variables
+// Variables for the text boxes. These are going to be imputed into the window.html file and will be read to produce a popup.
 
 $Height = 'popup_text_field_0';
 $Width = 'popup_text_field_0';
@@ -114,7 +113,7 @@ var Window
 function openWin() {
 	Window = window.open("/home/ccit2656/public_html/wp-content/plugins/WilltheRealPopupPleaseStandUp/window.php","Window","width = $Width, height = $Height");
 }
-</script>	
+</script>
 	<?php
 	
 }
@@ -132,7 +131,19 @@ function popup_callit(){
 	echo '<p>Textarea: ' . $options['popup_textarea_field_3'] . '</p>';
 
 }	
+function shortcode_welp($atts, $content = null) {
+	extract(shortcode_atts(array(
+		'class' => ''
+	), $atts));
 
+	return '<div class="welp">' . do_shortcode($content) . '</div>';
+}
+
+function shortcode_welp_register() {
+add_shortcode('welp', 'shortcode_welp');
+}
+
+add_action('init', 'shortcode_welp_register');
 add_filter('the_content', 'popup_callit');	
 
 
