@@ -12,7 +12,7 @@ ob_start();
 // This is the function that initiates the menu and adds all the options to it. Things such as title and icon of the menu are here.
 function popup_add_admin_menu(  ) { 
 
-	add_menu_page( 'The Popup', 'The Popup', 'manage_options', 'popup_plugin', 'popup_options_page', 'dashicons-hammer', 66 );
+	add_menu_page( 'The Popup', 'The Popup', 'manage_options', 'popup_plugin', 'popup_options_page', 'dashicons-align-right', 66 );
 
 }
 
