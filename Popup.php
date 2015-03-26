@@ -80,7 +80,7 @@ function popup_textarea_field_3_render() {
 // Variables for the text boxes. These are going to be imputed into the window.html file and will be read to produce a popup.
 
 $Height = 'popup_text_field_0';
-$Width = 'popup_text_field_0';
+$Width = 'popup_text_field_1';
 $SESSION_["content"] = 'popup_textarea_field_3';
 	
 
@@ -117,8 +117,7 @@ function openWin() {
 
 add_action( 'admin_menu', 'popup_add_admin_menu' );
 add_action( 'admin_init', 'popup_settings_init' );	
-// Hook for when wp loads a page. Popup will open.
-add_action( 'wp_loaded', 'openWin');
+
 
 
 
