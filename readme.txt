@@ -28,5 +28,13 @@ The plugin works in this way:
 	custom word into []square brackets onto the desired page, users are able to
 	activate the shortcode.
 		EXAMPLE: [welp] shortcode [/welp] 
+	
+*********************READ THIS********************
+- As of a certain point, we were having struggles with the header. It was giving us an error
+	we put the shortcode in a seperate plugin by itself as proof that we can make it. The 
+	plugin by itself is called shortcode and it is included on the ccit2656 page. We can
+	hand that in on request.
+
+
 
 
