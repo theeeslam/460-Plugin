@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html>
-<body>
 <?php
-ob_start();
+
 /*
  * Plugin Name: The Popup
  * Description: This is a plugin that displays a popup.
@@ -111,10 +108,10 @@ function popup_options_page() {
 var Window
 
 function openWin() {
-	Window = window.open("/home/ccit2656/public_html/wp-content/plugins/WilltheRealPopupPleaseStandUp/window.php","Window","width = $Width, height = $Height");
+	Window = window.open("public_html/wp-content/plugins/Popup_Plugin/window.php","Window","width = $Width, height = $Height");
 }
 </script>
-	<?php
+<?php
 	
 }
 
@@ -148,5 +145,3 @@ add_filter('the_content', 'popup_callit');
 
 
 ?>
-</body>
-</html>
