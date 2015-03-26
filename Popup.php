@@ -79,8 +79,8 @@ function popup_textarea_field_3_render() {
 
 // Variables for the text boxes. These are going to be imputed into the window.html file and will be read to produce a popup.
 
-$Height = 'popup_text_field_0';
-$Width = 'popup_text_field_1';
+$Height = $_POST['popup_text_field_0'];
+$Width = $_POST['popup_text_field_1'];
 $SESSION_["content"] = 'popup_textarea_field_3';
 	
 
@@ -101,10 +101,11 @@ function popup_options_page() {
 		submit_button();
 		?>
 <script>
-var Window
-
+var Window;
+var outWidth = 200;
+var inWidth = 200;
 function openWin() {
-	Window = window.open("public_html/wp-content/plugins/Popup_Plugin/window.php","Window","width = $Width, height = $Height");
+	Window = window.open("/~ccit2656/wp-content/plugins/Popup_Plugin/window.php","Window", "width=" + String(outWidth) + ", height=" + String(inWidth) );
 }
 </script>
 	<button onclick = "openWin()"> Create the Window </button>
@@ -129,7 +130,7 @@ function popup_callit(){
 	echo '<p>Textarea: ' . $options['popup_textarea_field_3'] . '</p>';
 
 }	
-// This is the short code function. The user can call on [welp] for ease of access
+// This is the short code function. The user can call on [corgis] for ease of access
 function shortcode_welp($atts, $content = null) {
 	extract(shortcode_atts(array(
 		'class' => ''
@@ -138,11 +139,19 @@ function shortcode_welp($atts, $content = null) {
 	return '<div class="welp">' . do_shortcode($content) . '</div>';
 }
 
-function shortcode_welp_register() {
-add_shortcode('welp', 'shortcode_welp');
+function corgis($atts, $content = null) {
+	extract(shortcode_atts(array(
+		'class' => '',
+		'link' =>'',
+	), $atts));
+
+	return '<div class="corgi">' . do_shortcode($content) . '</div>'. $link;
 }
 
-add_action('init', 'shortcode_welp_register');
+function corgisURL(){
+	add_shortcode('corgi','corgisURL');
+}
+add_shortcode('corgis','corgisURL');
 add_filter('the_content', 'popup_callit');	
 
 
