@@ -1,155 +1,144 @@
+<!DOCTYPE html>
 <?php
 /*
  * Plugin Name: The Popup
- * Description: A plugin that loads a pop up on page load
- * Author: Paige R, Tom S, Elyse M
- * Version: 1.0
+ * Description: This is a plugin that displays a popup on page load
+ * Author: Elyse M, Tom S, Paige R.
  */
 
-
-function cd_popup_add_admin_menu(  ) { 
+// This is the function that initiates the menu and adds all the options to it. Things such as title and icon of the menu are here.
+function popup_add_admin_menu(  ) { 
 
 	add_menu_page( 'The Popup', 'The Popup', 'manage_options', 'popup_plugin', 'popup_options_page', 'dashicons-hammer', 66 );
 
 }
 
 
-function cd_popup_settings_init(  ) { 
-
-	register_setting( 'plugin_page', 'cd_popup_settings' );
+function popup_settings_init(  ) { 
+// This command registers the settings fields and makes them possible
+	register_setting( 'plugin_page', 'popup_settings' );
 	
 	add_settings_section(
-		'cd_popup_page_section', 
-		__( 'Description for the section', 'popup' ), 
-		'cd_popup_settings_section_callback', 
+		'popup_page_section', 
+		__( 'Here you can enter in the width and height for the popup that will come up. You can also enter in the text that the popup will display.', 'popup' ), 
+		'popup_settings_section_callback', 
 		'plugin_page'
 	);
-
+// This is the first settings field: Height of the popup in pixels
 	add_settings_field( 
-		'cd_popup_text_field_0', 
-		__( 'Enter content into the text box', 'popup' ), 
-		'cd_popup_text_field_0_render', 
+		'popup_text_field_0', 
+		__( 'Enter Width in pixels:', 'popup' ), 
+		'popup_text_field_0_render', 
 		'plugin_page', 
-		'cd_popup_plugin_page_section' 
+		'popup_page_section' 
+	);
+// This is the second settings field: Width of the popup in pixels	
+	add_settings_field( 
+		'popup_text_field_1', 
+		__( 'Enter Height in pixels:', 'popup' ), 
+		'popup_text_field_1_render', 
+		'plugin_page', 
+		'popup_page_section' 
 	);
 
-	add_settings_field( 
-		'cd_popup_checkbox_field_1', 
-		__( 'Check your preference', 'popup' ), 
-		'cd_popup_checkbox_field_1_render', 
-		'plugin_page', 
-		'cd_popup_plugin_page_section' 
-	);
 
+// This is the final settings field: This contains a paragraph that will be used in the html file to fill it with content
 	add_settings_field( 
-		'cd_popup_radio_field_2', 
-		__( 'Choose an option', 'popup' ), 
-		'cd_popup_radio_field_2_render', 
+		'popup_textarea_field_3', 
+		__( 'Enter the content for the popup:', 'popup' ), 
+		'popup_textarea_field_3_render', 
 		'plugin_page', 
-		'cd_popup_plugin_page_section' 
+		'popup_page_section' 
 	);
-
-	add_settings_field( 
-		'cd_popup_textarea_field_3', 
-		__( 'Enter content into the text area', 'popup' ), 
-		'cd_popup_textarea_field_3_render', 
-		'plugin_page', 
-		'cd_popup_plugin_page_section' 
-	);
-
-	add_settings_field( 
-		'cd_popup_select_field_4', 
-		__( 'Choose from the dropdown', 'popup' ), 
-		'cd_popup_select_field_4_render', 
-		'plugin_page', 
-		'cd_popup_plugin_page_section' 
-	);
-
 
 }
 
-function cd_popup_text_field_0_render() { 
-	$options = get_option( 'cd_popup_settings' );
+// These functions render the settings fields onto the page to make them visible and intractable. 
+function popup_text_field_0_render() { 
+	$options = get_option( 'popup_settings' );
 	?>
-	<input type="text" name="cd_popup_settings[cd_popup_text_field_0]" value="<?php if (isset($options['cd_popup_text_field_0'])) echo $options['cd_popup_text_field_0']; ?>">
+	<input type="text" name="popup_settings[popup_text_field_0]" value="<?php if (isset($options['popup_text_field_0'])) echo $options['popup_text_field_0']; ?>">
 	<?php
 }
 
-
-function cd_popup_checkbox_field_1_render() { 
-	$options = get_option( 'cd_popup_settings' );
+function popup_text_field_1_render() { 
+	$options = get_option( 'popup_settings' );
 	?>
-	<input type="checkbox" name="cd_popup_settings[cd_popup_checkbox_field_1]" <?php if (isset($options['cd_popup_checkbox_field_1'])) checked( $options['cd_popup_checkbox_field_1'], 1 ); ?> value="1">
+	<input type="text" name="popup_settings[popup_text_field_1]" value="<?php if (isset($options['popup_text_field_1'])) echo $options['popup_text_field_1']; ?>">
 	<?php
 }
 
-
-function cd_popup_radio_field_2_render() { 
-	$options = get_option( 'cd_popup_settings' );
+function popup_textarea_field_3_render() { 
+	$options = get_option( 'popup_settings' );
 	?>
-	<input type="radio" name="cd_popup_settings[cd_popup_radio_field_2]" <?php if (isset($options['cd_popup_radio_field_2'])) checked( $options['cd_popup_radio_field_2'], 1 ); ?> value="1">
-	<?php
-}
-
-
-function cd_popup_textarea_field_3_render() { 
-	$options = get_option( 'cd_popup_settings' );
-	?>
-	<textarea cols="40" rows="5" name="cd_popup_settings[cd_popup_textarea_field_3]"> 
-		<?php if (isset($options['cd_popup_textarea_field_3'])) echo $options['cd_popup_textarea_field_3']; ?>
+	<textarea cols="40" rows="5" name="popup_settings[popup_textarea_field_3]"> 
+		<?php if (isset($options['popup_textarea_field_3'])) echo $options['popup_textarea_field_3']; ?>
  	</textarea>
 	<?php
 }
 
 
-function cd_popup_select_field_4_render() { 
-	$options = get_option( 'cd_popup_settings' );
-	?>
-	<select name="cd_popup_settings[cd_popup_select_field_4]">
-		<option value="1" <?php if (isset($options['cd_popup_select_field_4'])) selected( $options['cd_popup_select_field_4'], 1 ); ?>>Option 1</option>
-		<option value="2" <?php if (isset($options['cd_popup_select_field_4'])) selected( $options['cd_popup_select_field_4'], 2 ); ?>>Option 2</option>
-	</select>
-<?php
+	
+
+// These functions make the fields where information can be written have details. This is the callback.
+function popup_settings_section_callback() { 
+	echo __( 'Enter in text in the fields blow:', 'popup' );
 }
-
-
-function cd_popup_settings_section_callback() { 
-	echo __( 'More of a description and detail about the section.', 'popup' );
-}
-
-
+		
 function popup_options_page() { 
 	?>
 	<form action="options.php" method="post">
 		
-		<h2>The Popup</h2>
-		
+		<h2>Welcome to "The Plugin"</h2>
+	
 		<?php
 		settings_fields( 'plugin_page' );
 		do_settings_sections( 'plugin_page' );
 		submit_button();
 		?>
-		
-	</form>
-	<?php
 
+	<button onclick = "openWin()"> Create the Window </button>
+
+<script>
+var Window;
+
+function openWin() {
+	Window = window.open("window.php","Window","width = $Width, height = $Height");
+}
+</script>
+
+
+	</form>
+
+<?php 
+
+
+?>
+	
+	
+	<?php
+	
 }
 
-add_action( 'admin_menu', 'cd_popup_add_admin_menu' );
-add_action( 'admin_init', 'cd_popup_settings_init' );	
+add_action( 'admin_menu', 'popup_add_admin_menu' );
+add_action( 'admin_init', 'popup_settings_init' );	
 
 
 
-function popup_plugin_callit(){
-	$options = get_option( 'cd_popup_settings' );
-	echo '<img src="' . $options['cd_popup_text_field_0'] . '" />';
-	echo '<p>Checkbox: ' . $options['cd_[popup_checkbox_field_1'] . '</p>';
-	echo '<p>Radio: ' . $options['cd_popup_radio_field_2'] . '</p>';
-	echo '<p>Textarea: ' . $options['cd_popup_textarea_field_3'] . '</p>';
-	echo '<p>Select: ' . $options['cd_popup_select_field_4'] . '</p>';
+function popup_callit(){
+	$options = get_option( 'popup_settings' );
+	echo '<img src="' . $options['popup_text_field_0'] . '" />';
+	echo '<p>Textarea: ' . $options['popup_textarea_field_0'] . '</p>';
+	echo '<p>Textarea: ' . $options['popup_textarea_field_1'] . '</p>';
+	echo '<p>Textarea: ' . $options['popup_textarea_field_3'] . '</p>';
+
 }	
 
-add_filter('the_content', 'popup_plugin_callit');	
+add_filter('the_content', 'popup_callit');	
 
+// Variables
 
+$Height = 'popup_text_field_0';
+$Width = 'popup_text_field_0';
+$Content = 'popup_textarea_field_3';
 ?>
