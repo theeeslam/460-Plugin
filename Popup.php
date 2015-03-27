@@ -76,7 +76,7 @@ function popup_options_page() {
 		submit_button();
 		
 		?>
-<!-- This part of the code allows for the input to be recognized in the back end. The javascript function opens up the window in the back end for the preview window.
+<!-- This part of the code allows for the input to be recognized in the back end. The JavaScript function opens up the window in the back end for the preview window.
 <?php
 echo '
 <script>
@@ -92,7 +92,7 @@ function openWin() {
 ?>
 	
 
-<!-- This part of the code creates the font end of the plugin where the popup can be created This function also helps to create the width and height in the plugin by echoing them to the php.-->
+<!-- This part of the code creates the font end of the plug-in where the pop-up can be created This function also helps to create the width and height in the plug-in by echoing them to the php.-->
 <?php
 }
 
@@ -112,7 +112,7 @@ function popup_callit(){
 	echo '<p>Text field 1: ' . $height . '</p>';
 
 
-// This following process turns the javascript code for opening a window into a php echo that we use to open the window. We call on the function later on to open the window.	
+// This following process turns the JavaScript code for opening a window into a php echo that we use to open the window. We call on the function later on to open the window.	
 	echo '
 <script>
 var Window;
@@ -133,7 +133,7 @@ echo '</form>';
 }	
 ?>
 <?php
-// This is the short code function. The user can call on it for ease of access by typing in the shortcode and then the function echoes out a set ammount of content
+// This is the short code function. The user can call on it for ease of access by typing in the short code and then the function echoes out a set amount of content
 
 function shortcode_welp($atts, $content = null) {
 	extract(shortcode_atts(array(
