@@ -41,47 +41,29 @@ function popup_settings_init(  ) {
 		'popup_page_section' 
 	);
 
-
-// This is the final settings field: This contains a paragraph that will be used in the html file to fill it with content
-	add_settings_field( 
-		'popup_textarea_field_3', 
-		__( 'Enter the content for the popup:', 'popup' ), 
-		'popup_textarea_field_3_render', 
-		'plugin_page', 
-		'popup_page_section' 
-	);
-
 }
 
 // These functions render the settings fields onto the page to make them visible and intractable. 
 function popup_text_field_0_render() { 
 	$options = get_option( 'popup_settings' );
 	?>
-	<input type="text" name="popup_settings[popup_text_field_0]" value="<?php if (isset($options['popup_text_field_0'])) echo $options['popup_text_field_0']; ?>">
+	<input type="text" id="height" class="height" name="popup_settings[popup_text_field_0]" value="<?php if (isset($options['popup_text_field_0'])) echo $options['popup_text_field_0']; ?>">
 	<?php
 }
 
 function popup_text_field_1_render() { 
 	$options = get_option( 'popup_settings' );
 	?>
-	<input type="text" name="popup_settings[popup_text_field_1]" value="<?php if (isset($options['popup_text_field_1'])) echo $options['popup_text_field_1']; ?>">
+	<input type="text" id="width" class="width" name="popup_settings[popup_text_field_1]" value="<?php if (isset($options['popup_text_field_1'])) echo $options['popup_text_field_1']; ?>">
 	<?php
 }
 
-function popup_textarea_field_3_render() { 
-	$options = get_option( 'popup_settings' );
-	?>
-	<textarea cols="40" rows="5" name="popup_settings[popup_textarea_field_3]"> 
-		<?php if (isset($options['popup_textarea_field_3'])) echo $options['popup_textarea_field_3']; ?>
- 	</textarea>
-	<?php
-}
 
 // Variables for the text boxes. These are going to be imputed into the window.html file and will be read to produce a popup.
 
-$Height = $_POST['popup_text_field_0'];
-$Width = $_POST['popup_text_field_1'];
-$SESSION_["content"] = 'popup_textarea_field_3';
+$Height = $_POST[$options['popup_text_field_1']];
+$Width = $_POST[$options['popup_text_field_1']];
+
 	
 
 // These functions make the fields where information can be written have details. This is the callback.
@@ -102,8 +84,8 @@ function popup_options_page() {
 		?>
 <script>
 var Window;
-var outWidth = 200;
-var inWidth = 200;
+var outWidth =  document.getElementsByClassName("height");
+var inWidth = document.getElementsByClassName("width");
 function openWin() {
 	Window = window.open("/~ccit2656/wp-content/plugins/Popup_Plugin/window.php","Window", "width=" + String(outWidth) + ", height=" + String(inWidth) );
 }
@@ -127,17 +109,12 @@ function popup_callit(){
 	echo '<img src="' . $options['popup_text_field_0'] . '" />';
 	echo '<p>Textarea: ' . $options['popup_textarea_field_0'] . '</p>';
 	echo '<p>Textarea: ' . $options['popup_textarea_field_1'] . '</p>';
-	echo '<p>Textarea: ' . $options['popup_textarea_field_3'] . '</p>';
+
 
 }	
 // This is the short code function. The user can call on [corgis] for ease of access
-function shortcode_welp($atts, $content = null) {
-	extract(shortcode_atts(array(
-		'class' => ''
-	), $atts));
 
-	return '<div class="welp">' . do_shortcode($content) . '</div>';
-}
+
 
 function corgis($atts, $content = null) {
 	extract(shortcode_atts(array(
