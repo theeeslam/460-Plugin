@@ -37,3 +37,9 @@ The plugin works in this way:
 
 
 
+WORDPRESS INSTALL FILE: http://phoenix.sheridanc.on.ca/~ccit2656/
+
+
+
+
+

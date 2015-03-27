@@ -1,6 +1,7 @@
 body {
-	background-color: #D8D8D8;
+	background-image: url("http://www.pearlanddean.com/sites/default/files/blog/Sheet-Music-Desktop-Background-Mono-Color.jpg");
 }
+
 
 h1 {
 	font-family: Georgia, serif;
@@ -9,9 +10,29 @@ h1 {
 	text-align: center;
 }
 
-p {
-	font-family: Georgia, serif;
+p.sans {
+	font-family: Arial, Helvetica, sans-serif;
 	color: black;
 	text-align: center;
 }
 
+#div1 {
+	text-align: center;
+}
+
+.bbg {
+	background-color: gray;
+	color: white;
+	margin: 30px;
+	padding: 20px;
+}
+
+p.lala {
+		font-family: Arial, Helvetica, sans-serif;
+		color: white;
+}
+
+h2.baba {
+
+		text-align: center;
+}
