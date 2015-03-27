@@ -1,9 +1,17 @@
 body {
-	background-color: green
+	background-color: #D8D8D8;
 }
 
 h1 {
 	font-family: Georgia, serif;
-	color: yellow;
+	color: black;
 	font-size: 30px;
+	text-align: center;
 }
+
+p {
+	font-family: Georgia, serif;
+	color: black;
+	text-align: center;
+}
+

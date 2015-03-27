@@ -61,8 +61,7 @@ function popup_text_field_1_render() {
 
 // Variables for the text boxes. These are going to be imputed into the window.html file and will be read to produce a popup.
 
-$Height = $_POST[$options['popup_text_field_1']];
-$Width = $_POST[$options['popup_text_field_1']];
+
 
 	
 
@@ -70,28 +69,37 @@ $Width = $_POST[$options['popup_text_field_1']];
 function popup_settings_section_callback() { 
 	echo __( 'Enter in text in the fields blow:', 'popup' );
 }
-		
+	
 function popup_options_page() { 
+	
 	?>
 	<form action="options.php" method="post">
 		
 		<h2>Welcome to "The Plugin"</h2>
-	
+		
 		<?php
 		settings_fields( 'plugin_page' );
 		do_settings_sections( 'plugin_page' );
 		submit_button();
+		
 		?>
+
+<?php
+echo '
 <script>
 var Window;
 var outWidth =  document.getElementsByClassName("height");
 var inWidth = document.getElementsByClassName("width");
 function openWin() {
-	Window = window.open("/~ccit2656/wp-content/plugins/Popup_Plugin/window.php","Window", "width=" + String(outWidth) + ", height=" + String(inWidth) );
-}
-</script>
+	Window = window.open("/~ccit2656/wp-content/plugins/Popup_Plugin/window.php","Window", "width=" + String(' . $width . ') + ", height=" + String(inWidth) );
+	window.alert($_POST["popup_settings[popup_text_field_1]"]);
+	window.alert("aa");
+	}
+</script>';
+?>
 	<button onclick = "openWin()"> Create the Window </button>
 	</form>
+	
 <!-- This script opens up the popup window. -->	
 
 <?php
@@ -106,9 +114,30 @@ add_action( 'admin_init', 'popup_settings_init' );
 
 function popup_callit(){
 	$options = get_option( 'popup_settings' );
-	echo '<img src="' . $options['popup_text_field_0'] . '" />';
-	echo '<p>Textarea: ' . $options['popup_textarea_field_0'] . '</p>';
-	echo '<p>Textarea: ' . $options['popup_textarea_field_1'] . '</p>';
+	
+	$width = $options['popup_text_field_0'];
+	$height = $options['popup_text_field_1'];
+	
+	echo '<p>Text field 0: ' . $width . '</p>';
+	echo '<p>Text field 1: ' . $height . '</p>';
+
+
+	
+	echo '
+<script>
+var Window;
+var outWidth =  document.getElementsByClassName("height");
+var inWidth = document.getElementsByClassName("width");
+function openWin() {
+	Window = window.open("http://phoenix.sheridanc.on.ca/~ccit2656/wp-content/plugins/Popup_Plugin/window.php","Window", "width=" + String(' . $width . ') + ", height=" + String(' . $height . ') );
+	window.alert($_POST["popup_settings[popup_text_field_1]"]);
+	window.alert("aa");
+	}
+</script>';
+echo '<form>';
+echo '<button onclick = "openWin()"> Create the Window </button>';
+echo '</form>';
+	
 
 
 }	
