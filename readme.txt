@@ -9,21 +9,20 @@ The plugin works in this way:
 
 2. You should see a custom section on the left side of your screen named "The Popup"
 
-3. When you click the popup you should see a new page with three fields
-	- The first field is the Width of your popup in pixels
-	- The second field is the Height of your popup in pixels
-	- The third field is the paragraph content for the popup
+3. When you click the popup you should see a new page with two fields
+	- The first field is the Width of your popup in pixels - just a number
+	- The second field is the Height of your popup in pixels - just a number
+
 
 4. If you click the "Save Changes button once you have entered in values and text,
 	the numbers will be saved to the options menu
 
-5. If you click the "Create the Window" button, a sample window will be created
-
-6. The plugin works in a way that it hooks on the the load process of a page
+5. If you go to the front end, you will see a "Create the Window" If you click this, then a popup
+	with the dimensions you specified in the back end will be created
 
 7. You can open the window.css file and the window.html file to edit the popup completly
 
-8. To enter the shortcode for the plugin, you can enter in the custom word 'welp'
+8. To enter the shortcode for the plugin, you can enter in the custom word 'corgi'
 	to extract the shortcode onto the desired wp page. By entering the 
 	custom word into []square brackets onto the desired page, users are able to
 	activate the shortcode.

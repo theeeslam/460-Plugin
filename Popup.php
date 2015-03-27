@@ -58,14 +58,7 @@ function popup_text_field_1_render() {
 	<?php
 }
 
-
-// Variables for the text boxes. These are going to be imputed into the window.html file and will be read to produce a popup.
-
-
-
-	
-
-// These functions make the fields where information can be written have details. This is the callback.
+// These functions make the fields where information can be written
 function popup_settings_section_callback() { 
 	echo __( 'Enter in text in the fields blow:', 'popup' );
 }
@@ -83,7 +76,7 @@ function popup_options_page() {
 		submit_button();
 		
 		?>
-
+<!-- This part of the code allows for the input to be recognized in the back end.
 <?php
 echo '
 <script>
@@ -97,13 +90,10 @@ function openWin() {
 	}
 </script>';
 ?>
-	<button onclick = "openWin()"> Create the Window </button>
-	</form>
 	
-<!-- This script opens up the popup window. -->	
 
+<!-- This part of the code creates the font end of the plugin where the popup can be created.-->
 <?php
-	
 }
 
 add_action( 'admin_menu', 'popup_add_admin_menu' );
@@ -122,7 +112,7 @@ function popup_callit(){
 	echo '<p>Text field 1: ' . $height . '</p>';
 
 
-	
+// This following process turns the javascript code for opening a window into a php echo that we use to open the window	
 	echo '
 <script>
 var Window;
@@ -141,24 +131,24 @@ echo '</form>';
 
 
 }	
-// This is the short code function. The user can call on [corgis] for ease of access
+?>
+<?php
+// This is the short code function. The user can call on it for ease of access
 
+$content= "http://www.dailybunny.com/.a/6a00d8341bfd0953ef0148c793026c970c-pi";
 
-
-function corgis($atts, $content = null) {
+function shortcode_corgi($atts, $content ) {
 	extract(shortcode_atts(array(
-		'class' => '',
-		'link' =>'',
+		'class' => 'corgi'
 	), $atts));
 
-	return '<div class="corgi">' . do_shortcode($content) . '</div>'. $link;
+	return '<div class="corgi">' . do_shortcode($content) . '</div>';
 }
 
-function corgisURL(){
-	add_shortcode('corgi','corgisURL');
+function shortcode_corgi_register() {
+add_shortcode('corgi', 'shortcode_corgi');
 }
-add_shortcode('corgis','corgisURL');
+
+add_action('init', 'shortcode_corgi_register');
 add_filter('the_content', 'popup_callit');	
-
-
 ?>
