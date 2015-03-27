@@ -24,7 +24,7 @@ function popup_settings_init(  ) {
 		'popup_settings_section_callback', 
 		'plugin_page'
 	);
-// This is the first settings field: Height of the popup in pixels
+// This is the first settings field: This edits one of the properties in the window in pixels
 	add_settings_field( 
 		'popup_text_field_0', 
 		__( 'Enter Height in pixels:', 'popup' ), 
@@ -32,7 +32,7 @@ function popup_settings_init(  ) {
 		'plugin_page', 
 		'popup_page_section' 
 	);
-// This is the second settings field: Width of the popup in pixels	
+// This is the second settings field: This edits one of the properties in the window in pixels
 	add_settings_field( 
 		'popup_text_field_1', 
 		__( 'Enter Width in pixels:', 'popup' ), 
@@ -58,7 +58,7 @@ function popup_text_field_1_render() {
 	<?php
 }
 
-// These functions make the fields where information can be written
+// These functions make the fields where information can be written and puts them in a form
 function popup_settings_section_callback() { 
 	echo __( 'Enter in text in the fields blow:', 'popup' );
 }
@@ -76,7 +76,7 @@ function popup_options_page() {
 		submit_button();
 		
 		?>
-<!-- This part of the code allows for the input to be recognized in the back end.
+<!-- This part of the code allows for the input to be recognized in the back end. The javascript function opens up the window in the back end for the preview window.
 <?php
 echo '
 <script>
@@ -92,7 +92,7 @@ function openWin() {
 ?>
 	
 
-<!-- This part of the code creates the font end of the plugin where the popup can be created.-->
+<!-- This part of the code creates the font end of the plugin where the popup can be created This function also helps to create the width and height in the plugin by echoing them to the php.-->
 <?php
 }
 
@@ -112,7 +112,7 @@ function popup_callit(){
 	echo '<p>Text field 1: ' . $height . '</p>';
 
 
-// This following process turns the javascript code for opening a window into a php echo that we use to open the window	
+// This following process turns the javascript code for opening a window into a php echo that we use to open the window. We call on the function later on to open the window.	
 	echo '
 <script>
 var Window;
@@ -133,22 +133,22 @@ echo '</form>';
 }	
 ?>
 <?php
-// This is the short code function. The user can call on it for ease of access
+// This is the short code function. The user can call on it for ease of access by typing in the shortcode and then the function echoes out a set ammount of content
 
-$content= "http://www.dailybunny.com/.a/6a00d8341bfd0953ef0148c793026c970c-pi";
-
-function shortcode_corgi($atts, $content ) {
+function shortcode_welp($atts, $content = null) {
 	extract(shortcode_atts(array(
-		'class' => 'corgi'
+		'class' => ''
 	), $atts));
 
-	return '<div class="corgi">' . do_shortcode($content) . '</div>';
+	return '<div class="welp">' . do_shortcode($content) . '</div>';
 }
 
-function shortcode_corgi_register() {
-add_shortcode('corgi', 'shortcode_corgi');
+function shortcode_welp_register() {
+add_shortcode('welp', 'shortcode_welp');
 }
 
-add_action('init', 'shortcode_corgi_register');
+add_action('init', 'shortcode_welp_register');
+
+
 add_filter('the_content', 'popup_callit');	
 ?>
